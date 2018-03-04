@@ -13,7 +13,7 @@ let express = require('express'),
 
 // Config mongoose
 mongoose.Promise = global.Promise
-mongoose.connect('mongodb://localhost/' + config.__database_name, {
+mongoose.connect('mongodb://admin:admin@ds153958.mlab.com:53958/flyshop', {
     useMongoClient: true,
 })
 
