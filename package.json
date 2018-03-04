@@ -1,0 +1,33 @@
+{
+  "name": "flyshop-server",
+  "version": "1.0.0",
+  "description": "FlyShop Server",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon ./app.js --exec babel-node"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chinhphamnhu/GRADUATION-PROJECT-FLYSHOP-SERVER.git"
+  },
+  "author": "Chinh Pham",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/chinhphamnhu/GRADUATION-PROJECT-FLYSHOP-SERVER/issues"
+  },
+  "homepage": "https://github.com/chinhphamnhu/GRADUATION-PROJECT-FLYSHOP-SERVER#readme",
+  "dependencies": {
+    "async": "^2.6.0",
+    "babel-cli": "^6.26.0",
+    "bcrypt-nodejs": "0.0.3",
+    "crypto": "^1.0.1",
+    "express": "^4.16.2",
+    "express-handlebars": "^3.0.0",
+    "mongo": "^0.1.0",
+    "mongoose": "^4.13.5",
+    "nodemailer": "^4.4.0",
+    "nodemailer-express-handlebars": "^2.0.0",
+    "nodemon": "^1.12.1"
+  }
+}

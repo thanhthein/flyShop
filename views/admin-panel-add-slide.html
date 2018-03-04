@@ -1,0 +1,45 @@
+<form class="formSubmit" method="POST" action="">
+    <input type="hidden" name="idRequest" value="{{formdata._id}}">
+    <table border="1px" color="#000">
+        <tr>
+            <td class="childTD">Image url</td>
+            <td><input type="text" autocomplete="off" name="imgUrl" value="{{formdata.image}}" placeholder="Đường dẫn đến file ảnh"></td>
+        </tr>
+        <tr>
+            <td class="childTD">ID Product</td>
+            <td><input type="text" autocomplete="off" name="idProduct" value="{{formdata.id_product}}" placeholder="ID sản phẩm"></td>
+        </tr>
+        <tr>
+            <td class="childTD" autocomplete="off" style="vertical-align: top; padding-top: 5px;">Descriptions</td>
+            <td><textarea name="descriptionProduct" placeholder="Mô tả hình ảnh" rows="8">{{formdata.description}}</textarea></td>
+        </tr>
+    </table>
+    <input class="btnSave" type="submit" name="btnSave" value="LƯU DỮ LIỆU">
+</form>
+<form method="POST" action="">
+    <table border="1px" color="#000">
+        {{#if result_slide.length}}
+            <tr>
+                <th class="tdResult headerResult">_ID</th>
+                <th class="tdResult headerResult">LINK IMAGE</th>
+                <th class="tdResult headerResult">ID PRODUCT</th>
+                <th class="tdResult headerResult">DESCRIPTIONS</th>
+                <th class="tdResult headerResult">CREATE DATE</th>
+                <th class="tdResult headerResult">ACTION</th>
+            </tr>
+            {{#each result_slide}}
+                <tr>
+                    <td class="tdResult"><input type="text" class="rowTable" name="rowId" value="{{this._id}}" /></td>
+                    <td class="tdResult"><input type="text" class="rowTable" name="rowImage" value="{{this.image}}" /></td>
+                    <td class="tdResult"><input type="text" class="rowTable" name="rowIdProduct" value="{{this.id_product}}" /></td>
+                    <td class="tdResult"><input type="text" class="rowTable" name="rowDescription" value="{{this.description}}" /></td>
+                    <td class="tdResult"><input type="text" class="rowTable" name="rowCreated_Date" value="{{this.created_date}}" /></td>  
+                    <td class="tdResult_action">
+                        <button type="submit" name="btnRemove" value="{{this._id}}">Remove</button>
+                        <button type="submit" name="btnEdit" value="{{this._id}}">Edit</button>
+                    </td>
+                </tr>
+            {{/each}}
+        {{/if}}
+     </table>
+</form>

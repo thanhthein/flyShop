@@ -1,0 +1,57 @@
+<form class="formSubmit" method="POST" action="">
+    <input type="hidden" name="idRequest" value="{{formdata._id}}">
+    <table border="1px" color="#000">
+        <tr>
+            <td class="childTD">Title</td>
+            <td><input type="text" autocomplete="off" name="cateTitle" value="{{formdata.title}}" placeholder="Tiêu đề danh mục"></td>
+        </tr>
+        <tr>
+            <td class="childTD">Seo Title</td>
+            <td><input type="text" autocomplete="off" name="cateSeoTitle" value="{{formdata.seo_title}}" placeholder="Tiêu đề SEO"></td>
+        </tr>
+        <tr>
+        <td class="childTD">Image Url</td>
+            <td><input type="text" autocomplete="off" name="cateImage" value="{{formdata.image}}" placeholder="Link hình ảnh"></td>
+        </tr>
+        <tr>
+            <td class="childTD">Keywords</td>
+            <td><input type="text" autocomplete="off" name="cateKeyword" value="{{formdata.keywords}}" placeholder="Từ khóa"></td>
+        </tr>
+        <tr>
+            <td class="childTD" autocomplete="off" style="vertical-align: top; padding-top: 5px;">Descriptions</td>
+            <td><textarea name="cateDescriptions" placeholder="Mô tả danh mục" rows="8">{{formdata.descriptions}}</textarea></td>
+        </tr>
+    </table>
+    <input class="btnSave" type="submit" name="btnSave" value="LƯU DỮ LIỆU">
+</form>
+<form method="POST" action="">
+    <table border="1px" color="#000">
+        {{#if result_category.length}}
+            <tr>
+                <th style="width:80px;" class="tdResult headerResult">_ID</th>
+                <th class="tdResult headerResult">TITLE</th>
+                <th style="width:100px;" class="tdResult headerResult">SEO TITLE</th>
+                <th class="tdResult headerResult">IMAGE URL</th>
+                <th style="width:100px;" class="tdResult headerResult">KEYWORD</th>
+                <th class="tdResult headerResult">DESCRIPTIONS</th>
+                <th style="width:100px;" class="tdResult headerResult">CREATE DATE</th>
+                <th class="tdResult headerResult">ACTION</th>
+            </tr>
+            {{#each result_category}}
+                <tr>
+                    <td class="tdResult"><input type="text" class="rowTable" value="{{this._id}}" /></td>
+                    <td class="tdResult"><input type="text" class="rowTable" value="{{this.title}}" /></td>
+                    <td class="tdResult"><input type="text" class="rowTable" value="{{this.seo_title}}" /></td>
+                    <td class="tdResult"><input type="text" class="rowTable" value="{{this.image}}" /></td>
+                    <td class="tdResult"><input type="text" class="rowTable" value="{{this.keywords}}" /></td>
+                    <td class="tdResult"><input type="text" class="rowTable" value="{{this.descriptions}}" /></td>  
+                    <td class="tdResult"><input type="text" class="rowTable" value="{{this.create_date}}" /></td>  
+                    <td class="tdResult_action">
+                        <button type="submit" name="btnRemove" value="{{this._id}}">Remove</button>
+                        <button type="submit" name="btnEdit" value="{{this._id}}">Edit</button>
+                    </td>
+                </tr>
+            {{/each}}
+        {{/if}}
+     </table>
+</form>

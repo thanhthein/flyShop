@@ -1,0 +1,117 @@
+<form class="formSubmit" method="POST" action="">
+    <input type="hidden" name="idRequest" value="{{formdata._id}}">
+    <table border="1px" color="#000">
+        <tr>
+            <td style="padding-left: 10px;">Product Name</td>
+            <td><input type="text" autocomplete="off" name="productTitle" value="{{formdata.product_name}}" placeholder="Tên sản phẩm"></td>
+        </tr>
+        <tr>
+            <td autocomplete="off" style="vertical-align: top; padding-top: 5px; padding-left: 10px;;">Description Product</td>
+            <td><textarea name="productDescriptions" placeholder="Mô tả sản phẩm" rows="8">{{formdata.description_product}}</textarea></td>
+        </tr>
+        <tr>
+            <td style="padding-left: 10px;">Image Thumbnail</td>
+            <td><input type="text" autocomplete="off" name="productThumbnail" value="{{formdata.image_thumbnail}}" placeholder="Ảnh thu nhỏ sản phẩm"></td>
+        </tr>
+            {{#if formdata.image_product.length}}
+                {{#each formdata.image_product}}
+                    <tr>  
+                        <td style="padding-left: 10px;">Image Product {{@index}}</td>
+                        <td><input type="text" autocomplete="off" name="productImage_{{@index}}" value="{{this}}" placeholder="Ảnh chi tiết sản phẩm {{@index}}"></td>
+                    </tr>
+                {{/each}}
+            {{else}}
+                <tr>    
+                    <td style="padding-left: 10px;">Image Product 0</td>  
+                    <td><input type="text" autocomplete="off" name="productImage_0" value="" placeholder="Ảnh chi tiết sản phẩm 0"></td>
+                </tr>
+                <tr>
+                    <td style="padding-left: 10px;">Image Product 1</td>
+                    <td><input type="text" autocomplete="off" name="productImage_1" value="" placeholder="Ảnh chi tiết sản phẩm 1"></td>
+                </tr>
+                <tr>
+                    <td style="padding-left: 10px;">Image Product 2</td>
+                    <td><input type="text" autocomplete="off" name="productImage_2" value="" placeholder="Ảnh chi tiết sản phẩm 2"></td>
+                </tr>
+            {{/if}}  
+        <tr>
+            <td style="padding-left: 10px;">Category</td>
+            <td>
+                <select name="productIdCategory">
+                    <option value="5a22b54a6709a9e74cc5fba7">-- DANH MỤC SẢN PHẨM --</option>
+                    {{#if arrCategoryById.length}}
+                            {{#each arrCategoryById}}
+                                {{{this.option}}}
+                            {{/each}}
+                        {{else}}
+                            {{#each result_category}}
+                                <option value="{{this._id}}">-- {{this.title}} --</option>
+                            {{/each}}
+                    {{/if}}
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td style="padding-left: 10px;">Pricing</td>
+            <td><input type="number" autocomplete="off" name="productPricing" value="{{formdata.pricing}}" placeholder="Giá sản phẩm (1.000 VNĐ = 1000)"></td>
+        </tr>
+        <tr>
+            <td style="padding-left: 10px;">Promotion</td>
+            <td><input type="number" autocomplete="off" name="productPromotion" value="{{formdata.promotion}}" placeholder="Giảm giá (0 -> 100) %"></td>
+        </tr>
+        <tr>
+            <td style="padding-left: 10px;">Total Product</td>
+            <td><input type="text" autocomplete="off" name="productTotalProduct" value="{{formdata.total_product}}" placeholder="Tổng số sản phẩm (để trống = không giới hạn)"></td>
+        </tr>
+        <tr>
+            <td style="padding-left: 10px;">Status</td>
+            <td>
+                <select name="productStatus">
+                    <option value="Không xác định">-- TÌNH TRẠNG SẢN PHẨM --</option>
+                    {{#if arrStatus.length}}
+                        {{#each arrStatus}}
+                            {{{this.option}}}
+                        {{/each}}
+                    {{else}}
+                            <option value="Mới">-- Mới (nguyên tem/có mác) --</option>
+                            <option value="Đã qua sử dụng">-- Đã qua sử dụng --</option>
+                    {{/if}}
+                </select>
+            </td>
+        </tr>
+    </table>
+    <input class="btnSave" type="submit" name="btnSave" value="LƯU DỮ LIỆU">
+</form>
+<form method="POST" action="">
+    <table border="1px" color="#000">
+        {{#if result_product.length}}
+            <tr>
+                <th style="width: 40px;" class="tdResult headerResult">_ID</th>
+                <th class="tdResult headerResult">NAME</th>
+                <th style="width: 60px;" class="tdResult headerResult">DESC</th>
+                <th style="width: 60px;" class="tdResult headerResult">THUMB</th>
+                <th style="width: 85px;" class="tdResult headerResult">CATEGORY</th>
+                <th style="width: 60px;" class="tdResult headerResult">PRICING</th>
+                <th style="width: 95px;" class="tdResult headerResult">PROMOTION</th>
+                <th style="width: 60px;" class="tdResult headerResult">STATUS</th>
+                <th style="width: 115px;" class="tdResult headerResult">ACTION</th>
+            </tr>
+            {{#each result_product}}
+                <tr>
+                    <td class="tdResult"><input type="text" class="rowTable" value="{{this._id}}" /></td>
+                    <td class="tdResult"><input type="text" class="rowTable" value="{{this.product_name}}" /></td>
+                    <td class="tdResult"><input type="text" class="rowTable" value="{{this.description_product}}" /></td>
+                    <td class="tdResult"><input type="text" class="rowTable" value="{{this.image_thumbnail}}" /></td>
+                    <td class="tdResult"><input type="text" class="rowTable" value="{{this.category_id}}" /></td>
+                    <td class="tdResult"><input type="text" class="rowTable" value="{{this.pricing}}" /></td>
+                    <td class="tdResult"><input type="text" class="rowTable" value="{{this.promotion}}" /></td>
+                    <td class="tdResult"><input type="text" class="rowTable" value="{{this.status}}" /></td>  
+                    <td class="tdResult_action">
+                        <button type="submit" name="btnRemove" value="{{this._id}}">Remove</button>
+                        <button type="submit" name="btnEdit" value="{{this._id}}">Edit</button>
+                    </td>
+                </tr>
+            {{/each}}
+        {{/if}}
+     </table>
+</form>
