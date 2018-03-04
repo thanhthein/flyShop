@@ -24,7 +24,7 @@ let API = ['api', 'v1.0'], // Config API: 0 => Base URL, 1 => Version
         __database_name: 'FlyShop',
 
         // Port app server
-        __port_server: 3000, // 80 if public to IP address
+        __port_server: 80, // 80 if public to IP address
 
         // IP adress server
         __ip_server: 'http://45.77.43.246', //45.77.43.246
